@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Invitation | 婚礼邀请函</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #f8dfe6;
+      --pink-deep: #d98da0;
+      --green: #dfeede;
+      --green-deep: #7ea37c;
+      --cream: #fffaf7;
+      --text: #4b4b4b;
+      --white: #ffffff;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --radius: 24px;
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Inter", "Noto Serif SC", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(248,223,230,0.7), transparent 30%),
+        radial-gradient(circle at top right, rgba(223,238,222,0.9), transparent 35%),
+        linear-gradient(180deg, #fffefe 0%, #fffaf7 50%, #f8fcf8 100%);
+      overflow-x: hidden;
+    }
+
+    .floral-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.3;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(217,141,160,0.12) 0 30px, transparent 31px),
+        radial-gradient(circle at 90% 12%, rgba(126,163,124,0.15) 0 34px, transparent 35px),
+        radial-gradient(circle at 16% 88%, rgba(126,163,124,0.12) 0 26px, transparent 27px),
+        radial-gradient(circle at 85% 84%, rgba(217,141,160,0.12) 0 28px, transparent 29px);
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding: 32px 20px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-card {
+      width: 100%;
+      max-width: var(--max-width);
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .photo-slider {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      background: linear-gradient(135deg, #f6d8e1, #e8f3e8);
+      overflow: hidden;
+    }
+
+    .slides {
+      position: absolute;
+      inset: 0;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: scale(1.06);
+      transition: opacity 1.3s ease, transform 6s ease;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.12) 0%,
+        rgba(255,255,255,0.08) 35%,
+        rgba(255,250,247,0.88) 100%
+      );
+    }
+
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 24px;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .photo-caption {
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(8px);
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #6c6c6c;
+    }
+
+    .hero-content {
+      padding: 36px 24px 44px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(248,223,230,0.8), rgba(223,238,222,0.95));
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      color: #6a6a6a;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: "Playfair Display", "Noto Serif SC", serif;
+      font-size: clamp(2.4rem, 5vw, 4.4rem);
+      color: #4e4e4e;
+      line-height: 1.1;
+    }
+
+    .hero h1 .cn {
+      display: block;
+      margin-top: 10px;
+      font-family: "Noto Serif SC", serif;
+      font-size: clamp(1.3rem, 2.2vw, 2rem);
+      font-weight: 600;
+      color: var(--green-deep);
+    }
+
+    .names {
+      margin: 26px 0 10px;
+      font-family: "Playfair Display", "Noto Serif SC", serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--pink-deep);
+      line-height: 1.25;
+    }
+
+    .names .cn {
+      display: block;
+      margin-top: 8px;
+      font-size: clamp(1.15rem, 2vw, 1.6rem);
+      color: var(--green-deep);
+      font-family: "Noto Serif SC", serif;
+    }
+
+    .intro {
+      max-width: 760px;
+      margin: 18px auto 0;
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+
+    .section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 24px 20px 56px;
+    }
+
+    .section-card {
+      background: rgba(255,255,255,0.86);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,0.9);
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 0 0 24px;
+      font-family: "Playfair Display", "Noto Serif SC", serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: #4f4f4f;
+    }
+
+    .section-title .cn {
+      display: block;
+      margin-top: 8px;
+      font-family: "Noto Serif SC", serif;
+      font-size: 1.05rem;
+      color: var(--green-deep);
+      font-weight: 600;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .detail-box {
+      padding: 22px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(248,223,230,0.38), rgba(223,238,222,0.5));
+    }
+
+    .detail-label {
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    .detail-value {
+      font-size: 1.12rem;
+      line-height: 1.75;
+      font-weight: 600;
+      color: #555;
+    }
+
+    .detail-value .cn {
+      display: block;
+      font-weight: 500;
+      color: #7b7b7b;
+      margin-top: 4px;
+    }
+
+    .countdown-wrap {
+      text-align: center;
+      margin-top: 26px;
+      padding: 20px;
+      border-radius: 20px;
+      background: #fffafc;
+      border: 1px dashed rgba(217,141,160,0.45);
+    }
+
+    .countdown-title {
+      margin-bottom: 12px;
+      color: #767676;
+      font-weight: 600;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .time-box {
+      min-width: 92px;
+      background: linear-gradient(180deg, #fff, #f9fcf9);
+      border-radius: 18px;
+      padding: 16px 12px;
+      box-shadow: 0 5px 16px rgba(0,0,0,0.05);
+    }
+
+    .time-box .num {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--pink-deep);
+    }
+
+    .time-box .label {
+      margin-top: 6px;
+      font-size: 0.82rem;
+      color: #707070;
+      line-height: 1.45;
+    }
+
+    .story {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.9;
+      font-size: 1rem;
+    }
+
+    .map-wrap {
+      overflow: hidden;
+      border-radius: 22px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+      margin-top: 22px;
+    }
+
+    .map-actions {
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 18px;
+    }
+
+    .btn {
+      appearance: none;
+      border: none;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--pink-deep), #e5a5b4);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: linear-gradient(90deg, var(--green-deep), #97bb95);
+      color: #fff;
+    }
+
+    .btn-light {
+      background: #fff;
+      color: #666;
+    }
+
+    .rsvp-box {
+      text-align: center;
+      padding: 12px 0 4px;
+    }
+
+    .rsvp-note {
+      max-width: 720px;
+      margin: 12px auto 0;
+      line-height: 1.8;
+      color: #6f6f6f;
+    }
+
+    footer {
+      text-align: center;
+      padding: 16px 20px 50px;
+      color: #777;
+      line-height: 1.8;
+    }
+
+    .music-btn {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(135deg, var(--pink-deep), var(--green-deep));
+      color: #fff;
+      font-size: 1.4rem;
+      cursor: pointer;
+      box-shadow: 0 12px 26px rgba(0,0,0,0.16);
+      z-index: 9999;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .music-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .music-btn.playing {
+      animation: pulse 1.8s infinite;
+    }
+
+    .music-tooltip {
+      position: fixed;
+      right: 96px;
+      bottom: 32px;
+      z-index: 9998;
+      background: rgba(255,255,255,0.95);
+      padding: 10px 14px;
+      border-radius: 999px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+      color: #666;
+      font-size: 0.92rem;
+      max-width: 260px;
+    }
+
+    .hidden-player {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(217,141,160,0.35); }
+      70% { box-shadow: 0 0 0 18px rgba(217,141,160,0); }
+      100% { box-shadow: 0 0 0 0 rgba(217,141,160,0); }
+    }
+
+    @media (max-width: 800px) {
+      .photo-slider {
+        height: 320px;
+      }
+
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-card {
+        padding: 22px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero-content {
+        padding: 30px 18px 34px;
+      }
+
+      .photo-slider {
+        height: 260px;
+      }
+
+      .music-tooltip {
+        right: 20px;
+        bottom: 94px;
+        max-width: calc(100vw - 40px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="floral-bg"></div>
+
+  <div class="page">
+    <section class="hero">
+      <div class="hero-card">
+        <div class="photo-slider">
+          <div class="slides">
+            <!-- Replace these image URLs with your own photos -->
+            <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80');"></div>
+            <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1400&q=80');"></div>
+            <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=80');"></div>
+          </div>
+          <div class="photo-overlay">
+            <div class="photo-caption">Our Love Story · 我们的爱情故事</div>
+          </div>
+        </div>
+
+        <div class="hero-content">
+          <div class="eyebrow">Wedding Invitation · 婚礼邀请函</div>
+
+          <h1>
+            Welcome to Our Wedding
+            <span class="cn">欢迎参加我们的婚礼</span>
+          </h1>
+
+          <div class="names">
+            Guo Zhaoshuo &amp; Zhang Tiantian
+            <span class="cn">郭钊硕 &amp; 张甜甜</span>
+          </div>
+
+          <div class="intro">
+            Together with our families, we warmly invite you to celebrate our special day with us.<br>
+            在双方家人的陪伴与祝福下，我们诚挚邀请您出席我们的婚礼，与我们一同见证幸福时刻。
+          </div>
+
+          <div class="btn-row">
+            <a class="btn btn-primary" href="#details">View Details 查看详情</a>
+            <a class="btn btn-secondary" href="#rsvp">RSVP 回复出席</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="details">
+      <div class="section-card">
+        <h2 class="section-title">
+          Wedding Details
+          <span class="cn">婚礼信息</span>
+        </h2>
+
+        <div class="details-grid">
+          <div class="detail-box">
+            <div class="detail-label">Bridegroom · 新郎</div>
+            <div class="detail-value">
+              Guo Zhaoshuo
+              <span class="cn">郭钊硕</span>
+            </div>
+          </div>
+
+          <div class="detail-box">
+            <div class="detail-label">Bride · 新娘</div>
+            <div class="detail-value">
+              Zhang Tiantian
+              <span class="cn">张甜甜</span>
+            </div>
+          </div>
+
+          <div class="detail-box">
+            <div class="detail-label">Venue · 婚礼地点</div>
+            <div class="detail-value">
+              voco Orchard Singapore
+              <span class="cn">新加坡乌节路 voco 酒店</span>
+            </div>
+          </div>
+
+          <div class="detail-box">
+            <div class="detail-label">Address · 地址</div>
+            <div class="detail-value">
+              581 Orchard Road, Singapore 238883
+              <span class="cn">581 乌节路，新加坡 238883</span>
+            </div>
+          </div>
+
+          <div class="detail-box">
+            <div class="detail-label">Date · 日期</div>
+            <div class="detail-value">
+              12 December 2026
+              <span class="cn">2026年12月12日</span>
+            </div>
+          </div>
+
+          <div class="detail-box">
+            <div class="detail-label">Time · 时间</div>
+            <div class="detail-value">
+              5:00 PM
+              <span class="cn">下午 5:00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="countdown-wrap">
+          <div class="countdown-title">
+            Countdown to Our Big Day · 距离婚礼还有
+          </div>
+          <div class="countdown" id="countdown">
+            <div class="time-box"><div class="num">--</div><div class="label">Days<br>天</div></div>
+            <div class="time-box"><div class="num">--</div><div class="label">Hours<br>小时</div></div>
+            <div class="time-box"><div class="num">--</div><div class="label">Minutes<br>分钟</div></div>
+            <div class="time-box"><div class="num">--</div><div class="label">Seconds<br>秒</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-card">
+        <h2 class="section-title">
+          A Note from Us
+          <span class="cn">我们想对您说</span>
+        </h2>
+
+        <div class="story">
+          Your love, blessings, and presence mean the world to us. We would be honoured to celebrate this beautiful chapter of our lives with you.<br><br>
+          您的祝福、关爱与到来，对我们而言意义非凡。诚挚期待您与我们一同分享人生中这段最美好的时刻。
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-card">
+        <h2 class="section-title">
+          Venue &amp; Directions
+          <span class="cn">地点与路线</span>
+        </h2>
+
+        <div class="story">
+          Our wedding celebration will be held at <strong>voco Orchard Singapore</strong>.<br>
+          婚礼将在 <strong>voco Orchard Singapore</strong> 举行。<br><br>
+          Address: <strong>581 Orchard Road, Singapore 238883</strong><br>
+          地址：<strong>581 Orchard Road, Singapore 238883</strong>
+        </div>
+
+        <div class="map-wrap">
+          <iframe
+            title="voco Orchard Singapore Map"
+            src="https://www.google.com/maps?q=voco%20Orchard%20Singapore%20581%20Orchard%20Road%20Singapore%20238883&z=16&output=embed"
+            width="100%"
+            height="380"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <div class="map-actions btn-row">
+          <a
+            class="btn btn-light"
+            href="https://www.google.com/maps/search/?api=1&query=voco+Orchard+Singapore+581+Orchard+Road+Singapore+238883"
+            target="_blank"
+            rel="noopener noreferrer">
+            Open Google Maps 打开谷歌地图
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="rsvp">
+      <div class="section-card">
+        <h2 class="section-title">
+          RSVP
+          <span class="cn">回复出席</span>
+        </h2>
+
+        <div class="rsvp-box">
+          <div class="story">
+            We would be grateful if you could let us know whether you will be joining us.<br>
+            若您能回复是否出席，我们将不胜感激。
+          </div>
+
+          <div class="btn-row">
+            <!-- Replace with your actual RSVP links -->
+            <a class="btn btn-primary" href="https://forms.gle/YOUR_RSVP_FORM_LINK" target="_blank" rel="noopener noreferrer">
+              RSVP by Form 表单回复
+            </a>
+            <a class="btn btn-secondary" href="https://wa.me/6591234567?text=Hello%20Guo%20Zhaoshuo%20and%20Zhang%20Tiantian%2C%20I%20would%20like%20to%20RSVP%20for%20your%20wedding.%20%0A%0A%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E6%83%B3%E5%9B%9E%E5%A4%8D%E5%87%BA%E5%B8%AD%E4%BD%A0%E4%BB%AC%E7%9A%84%E5%A9%9A%E7%A4%BC%E3%80%82" target="_blank" rel="noopener noreferrer">
+              RSVP by WhatsApp 微信/WhatsApp回复
+            </a>
+          </div>
+
+          <div class="rsvp-note">
+            Please replace the Google Form link and WhatsApp number with your real RSVP details.<br>
+            请把以上表单链接和 WhatsApp 号码更换为您自己的真实回复方式。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      With love, we cannot wait to celebrate with you.<br>
+      满怀爱意，期待与您相聚见证幸福。
+    </footer>
+  </div>
+
+  <!-- Floating music helper text -->
+  <div class="music-tooltip" id="musicTooltip">
+    Tap the music button to play “Perfect” · 点击右下角音乐按钮播放《Perfect》
+  </div>
+
+  <!-- Hidden YouTube player -->
+  <div id="player" class="hidden-player"></div>
+
+  <!-- Floating Music Button -->
+  <button class="music-btn" id="musicBtn" aria-label="Play or pause background music">♪</button>
+
+  <script>
+    // ---------- Photo slider ----------
+    const slides = document.querySelectorAll(".slide");
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+      });
+    }
+
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }, 4000);
+
+    // ---------- Countdown ----------
+    // Change this date/time if needed
+    const weddingDate = new Date("2026-12-12T17:00:00+08:00").getTime();
+    const countdownEl = document.getElementById("countdown");
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      if (distance <= 0) {
+        countdownEl.innerHTML = `
+          <div class="time-box"><div class="num">0</div><div class="label">Days<br>天</div></div>
+          <div class="time-box"><div class="num">0</div><div class="label">Hours<br>小时</div></div>
+          <div class="time-box"><div class="num">0</div><div class="label">Minutes<br>分钟</div></div>
+          <div class="time-box"><div class="num">0</div><div class="label">Seconds<br>秒</div></div>
+        `;
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      countdownEl.innerHTML = `
+        <div class="time-box"><div class="num">${days}</div><div class="label">Days<br>天</div></div>
+        <div class="time-box"><div class="num">${hours}</div><div class="label">Hours<br>小时</div></div>
+        <div class="time-box"><div class="num">${minutes}</div><div class="label">Minutes<br>分钟</div></div>
+        <div class="time-box"><div class="num">${seconds}</div><div class="label">Seconds<br>秒</div></div>
+      `;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // ---------- YouTube Music ----------
+    // Ed Sheeran - Perfect (Official Music Video)
+    // Browsers normally require a user click before playback.
+    let player;
+    let isPlaying = false;
+    const musicBtn = document.getElementById("musicBtn");
+    const musicTooltip = document.getElementById("musicTooltip");
+
+    function loadYouTubeAPI() {
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.body.appendChild(tag);
+    }
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player("player", {
+        height: "1",
+        width: "1",
+        videoId: "2Vv-BfVoq4g",
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          loop: 1,
+          playlist: "2Vv-BfVoq4g",
+          modestbranding: 1,
+          rel: 0
+        },
+        events: {
+          onReady: function () {},
+          onStateChange: function (event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+              isPlaying = true;
+              musicBtn.classList.add("playing");
+              musicBtn.innerHTML = "❚❚";
+              musicTooltip.style.display = "none";
+            } else if (
+              event.data === YT.PlayerState.PAUSED ||
+              event.data === YT.PlayerState.ENDED
+            ) {
+              isPlaying = false;
+              musicBtn.classList.remove("playing");
+              musicBtn.innerHTML = "♪";
+            }
+          }
+        }
+      });
+    }
+
+    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+    loadYouTubeAPI();
+
+    musicBtn.addEventListener("click", function () {
+      if (!player) return;
+
+      if (!isPlaying) {
+        player.playVideo();
+        musicTooltip.style.display = "none";
+      } else {
+        player.pauseVideo();
+      }
+    });
+
+    // Hide tooltip after a while
+    setTimeout(() => {
+      if (musicTooltip) {
+        musicTooltip.style.opacity = "0";
+        musicTooltip.style.transition = "opacity 0.6s ease";
+        setTimeout(() => {
+          musicTooltip.style.display = "none";
+        }, 700);
+      }
+    }, 9000);
+  </script>
+</body>
+</html>
