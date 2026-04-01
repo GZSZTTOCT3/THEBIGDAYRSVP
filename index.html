@@ -776,6 +776,7 @@
       if (!player) return;
 
       if (!isPlaying) {
+        player.seekTo(10, true);
         player.playVideo();
         musicTooltip.style.display = "none";
       } else {
