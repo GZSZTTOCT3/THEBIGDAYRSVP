@@ -95,12 +95,12 @@
 
     .title-en {
       font-family: 'Great Vibes', cursive;
-      font-size: clamp(2.6rem, 6vw, 4.6rem);
+      font-size: clamp(2rem, 5vw, 3.6rem);
       color: var(--green-deep);
       letter-spacing: 0.03em;
       margin-bottom: 14px;
       line-height: 1.05;
-      text-shadow: 0 10px 26px rgba(122, 166, 122, 0.18);
+      text-shadow: none;
       animation: fadeSlideUp 1.2s ease both;
     }
 
@@ -215,10 +215,10 @@
       border-radius: 28px;
       overflow: hidden;
       position: relative;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-      background: linear-gradient(160deg, #fce8ee, #eef9ee);
-      border: 8px solid rgba(255,255,255,0.9);
-      transition: transform 0.4s ease;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      background: #fff;
+      border: 6px solid rgba(255,255,255,0.9);
+      transition: transform 0.3s ease;
     }
 
     .photo img {
@@ -509,7 +509,7 @@
       opacity: 1;
       transform: translateY(0);
     }
-  </style>
+   </style>
 </head>
 <body>
   <header class="hero">
@@ -557,7 +557,7 @@
             </div>
           </div>
         </div>
-
+           
         <h1 class="title-en">Guo Zhaoshuo &amp; Zhang Tiantian</h1>
         <h2 class="title-cn">郭兆硕 ＆ 张甜甜</h2>
         <p class="subtitle-cn">诚挚邀请您见证我们的幸福时刻</p>
@@ -568,7 +568,7 @@
           <span>•</span>
           <span>7:00 PM</span>
           <span>•</span>
-          <span>voco Orchard Singapore</span>
+          <span>Voco Orchard Singapore</span>
         </div>
 
         <div class="btn-row">
@@ -634,77 +634,85 @@
         <div class="rsvp-text card">
           <p class="cn">请填写以下资料，与我们分享您的出席信息。谢谢您见证我们的幸福时刻。</p>
           <p>Please fill in your details below to let us know if you will be joining us on our special day.</p>
-          <p class="cn">此表格目前为网页展示版本。如需真正收集回复，可连接到 Google Forms、Formspree 或您自己的电邮服务。</p>
-          <p>This sample form is ready for GitHub Pages display. To collect actual responses, connect it to Google Forms, Formspree, or your own backend service.</p>
+          
         </div>
 
-        <form class="card" onsubmit="handleRSVP(event)">
-          <div class="form-row">
-            <label>
-              <span class="label-cn">姓名</span>
-              Full Name
-            </label>
-            <input type="text" name="name" placeholder="Enter your name / 请输入姓名" required>
-          </div>
+        <form 
+  class="card"
+  action="https://docs.google.com/forms/d/e/1FAIpQLSf3HF9uN6Hpb3Om6uFfoThcfNIp3zY-iZ9W0QGtAte9BAX9Fw/formResponse"
+  method="POST"
+  target="_blank"
+>
 
-          <div class="form-row">
-            <label>
-              <span class="label-cn">联络号码</span>
-              Contact Number
-            </label>
-            <input type="tel" name="phone" placeholder="Enter your contact number / 请输入联络号码" required>
-          </div>
+  <div class="form-row">
+    <label>
+      <span class="label-cn">姓名</span>
+      Full Name
+    </label>
+    <input type="text" name="entry.326681200" required>
+  </div>
 
-          <div class="form-row">
-            <label>
-              <span class="label-cn">电邮地址</span>
-              Email Address
-            </label>
-            <input type="email" name="email" placeholder="Enter your email / 请输入电邮地址">
-          </div>
+  <div class="form-row">
+    <label>
+      <span class="label-cn">联络号码</span>
+      Contact Number
+    </label>
+    <input type="tel" name="entry.1828966850" required>
+  </div>
 
-          <div class="form-row">
-            <label>
-              <span class="label-cn">宾客归属</span>
-              Guest Side
-            </label>
-            <select name="guestSide" required>
-              <option value="">Please choose / 请选择</option>
-              <option>Groom's Guest / 新郎宾客</option>
-              <option>Bride's Guest / 新娘宾客</option>
-            </select>
-          </div>
+  <div class="form-row">
+    <label>
+      <span class="label-cn">电邮地址</span>
+      Email Address
+    </label>
+    <input type="email" name="entry.435118582">
+  </div>
 
-          <div class="form-row">
-            <label>
-              <span class="label-cn">出席情况</span>
-              Attendance
-            </label>
-            <select name="attendance" required>
-              <option value="">Please choose / 请选择</option>
-              <option>Joyfully attending / 很开心会出席</option>
-              <option>Sorry, unable to attend / 抱歉无法出席</option>
-            </select>
-          </div>
+  <div class="form-row">
+    <label>
+      <span class="label-cn">宾客归属</span>
+      Guest Side
+    </label>
+    <select name="entry.1924338191" required>
+      <option value="">Please choose / 请选择</option>
+      <option>Groom's Guest / 新郎宾客</option>
+      <option>Bride's Guest / 新娘宾客</option>
+    </select>
+  </div>
 
-          <div class="form-row">
-            <label>
-              <span class="label-cn">同行人数</span>
-              Number of Guests
-            </label>
-            <input type="number" name="guests" min="1" max="10" value="1">
-          </div>
+  <div class="form-row">
+    <label>
+      <span class="label-cn">出席情况</span>
+      Attendance
+    </label>
+    <select name="entry.759747861" required>
+      <option value="">Please choose / 请选择</option>
+      <option>Joyfully attending / 很开心会出席</option>
+      <option>Sorry, unable to attend / 抱歉无法出席</option>
+    </select>
+  </div>
 
-          <div class="form-row">
-            <label>
-              <span class="label-cn">留言</span>
-              Message
-            </label>
-            <textarea name="message" placeholder="Write your wishes here / 写下您的祝福"></textarea>
-          </div>
+  <div class="form-row">
+    <label>
+      <span class="label-cn">同行人数</span>
+      Number of Guests
+    </label>
+    <input type="number" name="entry.1924093467" min="1" max="10" value="1">
+  </div>
 
-          <button class="submit-btn" type="submit">Submit RSVP / 提交回函</button>
-        </form>
+  <div class="form-row">
+    <label>
+      <span class="label-cn">留言</span>
+      Message
+    </label>
+    <textarea name="entry.105307786"></textarea>
+  </div>
+
+  <button class="submit-btn" type="submit">
+    Submit RSVP / 提交回函
+  </button>
+
+</form>
       </div>
     </section>
   </main>
