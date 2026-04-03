@@ -200,7 +200,7 @@
       display: flex;
       gap: 24px;
       width: max-content;
-      animation: scrollPhotos 28s linear infinite;
+      animation: scrollPhotos 80s linear infinite;
       padding: 8px 8px 18px;
     }
 
@@ -497,6 +497,18 @@
         justify-content: center;
       }
     }
+  
+
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+
+    .scroll-reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
@@ -508,41 +520,40 @@
         <div class="photo-strip">
           <div class="photo-track">
             <div class="photo">
-              <img src="https://i.imgur.com/6IqgzHI.jpg" alt=" Photo18" />
+              <img src="https://i.imgur.com/6IqgzHI.jpg" alt="2018" />
               <div class="photo-label">2018</div>
             </div>
             <div class="photo">
-              <img src="https://i.imgur.com/2tp7hrx.jpg" alt="Photo19" />
+              <img src="https://i.imgur.com/2tp7hrx.jpg" alt="2019" />
               <div class="photo-label">2019</div>
             </div>
             <div class="photo">
-              <img src="https://i.imgur.com/zkgkRMn.jpg" alt="Photo20">
+              <img src="https://i.imgur.com/zkgkRMn.jpg" alt="2020" />
               <div class="photo-label">2020</div>
             </div>
             <div class="photo">
-              <img src="https://imgur.com/zdqmASb.jpg" alt="Photo21" />
+              <img src="https://i.imgur.com/zdqmASb.jpg" alt="2021" />
               <div class="photo-label">2021</div>
             </div>
             <div class="photo">
-              <img src="https://imgur.com/pZUWlU2.jpg" alt="Photo22" />
+              <img src="https://i.imgur.com/pZUWlU2.jpg" alt="2022" />
               <div class="photo-label">2022</div>
             </div>
             <div class="photo">
-              <img src="https://imgur.com/IrJolWw.jpg" alt="Photo23" />
+              <img src="https://i.imgur.com/IrJolWw.jpg" alt="2023" />
               <div class="photo-label">2023</div>
             </div>
             <div class="photo">
-              <img src="https://i.imgur.com/NXpYWya.jpg" alt="Photo24" />
+              <img src="https://i.imgur.com/NXpYWya.jpg" alt="2024" />
               <div class="photo-label">2024</div>
             </div>
             <div class="photo">
-              <img src="https://imgur.com/OnhHkkf.jpg" alt="Photo25" />
+              <img src="https://i.imgur.com/OnhHkkf.jpg" alt="2025" />
               <div class="photo-label">2025</div>
-            </div>
-             <div class="photo">
-              <img src="https://imgur.com/a/NDpnqAO.jpg" alt="Photo26" />
+            <div class="photo">
+              <img src="https://i.imgur.com/v9fiigC.jpg" alt="2026" />
               <div class="photo-label">2026</div>
-          </div>
+            </div>
           </div>
         </div>
 
@@ -556,7 +567,7 @@
           <span>•</span>
           <span>7:00 PM</span>
           <span>•</span>
-          <span>Voco Orchard Singapore</span>
+          <span>voco Orchard Singapore</span>
         </div>
 
         <div class="btn-row">
@@ -569,7 +580,7 @@
   </header>
 
   <main>
-    <section class="section container" id="details">
+    <section class="section container scroll-reveal" id="details">
       <div class="card" style="padding: 42px 24px;">
         <div class="section-title-wrap">
           <div class="section-title-cn">婚礼信息</div>
@@ -587,8 +598,8 @@
           <div class="info-box">
             <div class="info-label-cn">婚礼地点</div>
             <div class="info-label-en">Venue</div>
-            <div class="info-text cn">Voco Orchard Singapore<br>三楼 Vista Room</div>
-            <div class="info-text">Voco Orchard Singapore<br>Level 3, Vista Room</div>
+            <div class="info-text cn">voco Orchard Singapore<br>三楼 Vista Room</div>
+            <div class="info-text">voco Orchard Singapore<br>Level 3, Vista Room</div>
           </div>
 
           <div class="info-box address-center">
@@ -612,7 +623,7 @@
       </div>
     </section>
 
-    <section class="section container" id="rsvp">
+    <section class="section container scroll-reveal" id="rsvp">
       <div class="section-title-wrap">
         <div class="section-title-cn">回函确认</div>
         <div class="section-title-en">RSVP</div>
@@ -697,7 +708,7 @@
     </section>
   </main>
 
-  <footer class="footer">
+  <footer class="footer scroll-reveal">
     <span class="cn">感谢您的祝福，期待与您相见</span>
     Thank you for your love and blessings. We cannot wait to celebrate with you.
   </footer>
@@ -788,6 +799,22 @@ To receive actual submissions on GitHub Pages, connect this form to Formspree, G
         player.playVideo();
         musicToggle.textContent = '❚❚';
       }
+    });
+
+    const revealItems = document.querySelectorAll('.scroll-reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+
+    revealItems.forEach((item) => {
+      revealObserver.observe(item);
     });
   </script>
 </body>
