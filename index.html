@@ -95,18 +95,17 @@
 
     .title-en {
       font-family: 'Great Vibes', cursive;
-      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-size: clamp(2.3rem, 6vw, 3.8rem);
       color: var(--green-deep);
       letter-spacing: 0.03em;
       margin-bottom: 14px;
-      line-height: 1.05;
-      text-shadow: none;
+      line-height: 1.1;
       animation: fadeSlideUp 1.2s ease both;
     }
 
     .title-cn {
       font-family: "Noto Serif SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
-      font-size: clamp(2.4rem, 5.6vw, 4.2rem);
+      font-size: clamp(2.5rem, 7vw, 4.3rem);
       color: var(--pink-deep);
       letter-spacing: 0.16em;
       margin-bottom: 22px;
@@ -118,7 +117,7 @@
     .subtitle-en {
       max-width: 760px;
       margin: 0 auto 14px;
-      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      font-size: clamp(1.15rem, 2.4vw, 1.5rem);
     }
 
     .subtitle-cn {
@@ -133,10 +132,10 @@
       gap: 12px;
       justify-content: center;
       margin-top: 42px;
-      padding: 15px 24px;
+      padding: 16px 24px;
       border-radius: 999px;
       background: linear-gradient(90deg, rgba(248,215,223,0.85), rgba(220,239,220,0.88));
-      font-size: 1.05rem;
+      font-size: 1.08rem;
       letter-spacing: 0.08em;
     }
 
@@ -158,7 +157,7 @@
       border: 1px solid rgba(122,166,122,0.18);
       box-shadow: 0 12px 26px rgba(0,0,0,0.08);
       transition: all 0.3s ease;
-      font-size: 1.02rem;
+      font-size: 1.05rem;
       letter-spacing: 0.08em;
     }
 
@@ -176,41 +175,51 @@
     .section-title-cn {
       font-family: "Noto Serif SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
       color: var(--pink-deep);
-      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      font-size: clamp(2rem, 4vw, 2.7rem);
       margin-bottom: 8px;
       letter-spacing: 0.12em;
     }
 
     .section-title-en {
       color: var(--green-deep);
-      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
       letter-spacing: 0.08em;
     }
 
     .photo-strip {
-      overflow: hidden;
+      overflow-x: auto;
+      overflow-y: hidden;
       position: relative;
-      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
       margin: 0 auto 34px;
-      max-width: 920px;
+      max-width: 100%;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      mask-image: none;
+      -webkit-mask-image: none;
+      cursor: grab;
+      padding-bottom: 8px;
+    }
+
+    .photo-strip::-webkit-scrollbar {
+      display: none;
     }
 
     .photo-track {
       display: flex;
-      gap: 24px;
+      gap: 20px;
       width: max-content;
-      animation: scrollPhotos 80s linear infinite;
       padding: 8px 8px 18px;
+      animation: none;
     }
 
     .photo-track:hover {
-      animation-play-state: paused;
+      animation: none;
     }
 
     .photo {
-      width: min(300px, 74vw);
-      height: 380px;
+      width: min(320px, 78vw);
+      height: 420px;
       flex: 0 0 auto;
       border-radius: 28px;
       overflow: hidden;
@@ -219,6 +228,7 @@
       background: #fff;
       border: 6px solid rgba(255,255,255,0.9);
       transition: transform 0.3s ease;
+      scroll-snap-align: center;
     }
 
     .photo img {
@@ -237,6 +247,22 @@
       color: #fff;
       font-size: 1rem;
       letter-spacing: 0.06em;
+    }
+
+    .swipe-hint {
+      margin-top: -6px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 1rem;
+      color: #8e7480;
+      letter-spacing: 0.04em;
+    }
+
+    .swipe-hint .cn {
+      display: block;
+      font-family: "Noto Serif SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
+      color: var(--pink-deep);
+      margin-bottom: 4px;
     }
 
     .info-grid {
@@ -294,8 +320,9 @@
       color: #7a7a7a;
       background: #fff;
       border-radius: 999px;
-      padding: 10px 18px;
+      padding: 12px 20px;
       border: 1px solid rgba(122,166,122,0.2);
+      font-size: 1rem;
     }
 
     .rsvp-wrap {
@@ -331,7 +358,7 @@
     }
 
     label {
-      font-size: 1rem;
+      font-size: 1.02rem;
       letter-spacing: 0.04em;
       color: var(--green-deep);
     }
@@ -349,9 +376,9 @@
       width: 100%;
       border: 1px solid rgba(122,166,122,0.24);
       border-radius: 16px;
-      padding: 14px 16px;
+      padding: 15px 16px;
       font: inherit;
-      font-size: 1rem;
+      font-size: 1.04rem;
       background: rgba(255,255,255,0.94);
       color: var(--text);
       outline: none;
@@ -372,10 +399,10 @@
     .submit-btn {
       border: none;
       border-radius: 999px;
-      padding: 15px 22px;
+      padding: 16px 24px;
       background: linear-gradient(90deg, #f4ccd7, #d8eed8);
       color: #5b5656;
-      font-size: 1.02rem;
+      font-size: 1.08rem;
       cursor: pointer;
       box-shadow: 0 10px 24px rgba(122,166,122,0.14);
     }
@@ -445,11 +472,6 @@
       top: -9999px;
     }
 
-    @keyframes scrollPhotos {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
     @keyframes fadeSlideUp {
       from {
         opacity: 0;
@@ -470,35 +492,6 @@
       }
     }
 
-    @media (max-width: 860px) {
-      .info-grid,
-      .rsvp-wrap {
-        grid-template-columns: 1fr;
-      }
-
-      .section {
-        margin: 74px auto;
-        padding: 28px 10px;
-      }
-
-      .hero {
-        min-height: auto;
-        padding-top: 44px;
-      }
-
-      .hero-inner {
-        padding: 36px 18px;
-      }
-
-      .music-player {
-        right: 12px;
-        bottom: 12px;
-        left: 12px;
-        justify-content: center;
-      }
-    }
-  
-
     .scroll-reveal {
       opacity: 0;
       transform: translateY(36px);
@@ -509,7 +502,153 @@
       opacity: 1;
       transform: translateY(0);
     }
-   </style>
+
+    @media (max-width: 860px) {
+      .info-grid,
+      .rsvp-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        margin: 70px auto;
+        padding: 24px 8px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 30px;
+        padding-bottom: 40px;
+      }
+
+      .hero-inner {
+        padding: 28px 16px;
+      }
+
+      .eyebrow {
+        font-size: 2.6rem;
+        margin-bottom: 18px;
+      }
+
+      .title-en {
+        font-size: 2.6rem;
+        margin-bottom: 10px;
+      }
+
+      .title-cn {
+        font-size: 2.7rem;
+        letter-spacing: 0.1em;
+        margin-bottom: 16px;
+      }
+
+      .subtitle-cn,
+      .subtitle-en {
+        font-size: 1.08rem;
+        line-height: 1.6;
+      }
+
+      .date-pill {
+        font-size: 1rem;
+        padding: 14px 18px;
+        gap: 8px;
+        margin-top: 28px;
+      }
+
+      .btn-row {
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .btn {
+        width: 100%;
+        font-size: 1.05rem;
+        padding: 16px 18px;
+      }
+
+      .photo {
+        width: 84vw;
+        height: 450px;
+      }
+
+      .photo-label {
+        font-size: 1.05rem;
+        padding: 16px;
+      }
+
+      .section-title-cn {
+        font-size: 2rem;
+      }
+
+      .section-title-en {
+        font-size: 1.7rem;
+      }
+
+      .info-box,
+      .rsvp-text,
+      form {
+        padding: 22px 18px;
+      }
+
+      .info-text,
+      .rsvp-text p {
+        font-size: 1.08rem;
+      }
+
+      input,
+      textarea,
+      select {
+        font-size: 16px;
+        padding: 15px 14px;
+      }
+
+      .submit-btn {
+        width: 100%;
+        font-size: 1.08rem;
+      }
+
+      .music-player {
+        right: 12px;
+        bottom: 12px;
+        left: 12px;
+        justify-content: center;
+      }
+
+      .music-text {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        width: min(1120px, calc(100% - 18px));
+      }
+
+      .hero-inner {
+        padding: 24px 12px;
+      }
+
+      .eyebrow {
+        font-size: 2.2rem;
+      }
+
+      .title-en {
+        font-size: 2.25rem;
+      }
+
+      .title-cn {
+        font-size: 2.35rem;
+      }
+
+      .photo {
+        width: 86vw;
+        height: 420px;
+      }
+
+      .date-pill {
+        border-radius: 24px;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="hero">
@@ -557,7 +696,12 @@
             </div>
           </div>
         </div>
-           
+
+        <div class="swipe-hint">
+          <span class="cn">左右滑动照片查看更多</span>
+          Swipe left or right to view more photos
+        </div>
+
         <h1 class="title-en">Guo Zhaoshuo &amp; Zhang Tiantian</h1>
         <h2 class="title-cn">郭兆硕 ＆ 张甜甜</h2>
         <p class="subtitle-cn">诚挚邀请您见证我们的幸福时刻</p>
@@ -592,15 +736,15 @@
           <div class="info-box">
             <div class="info-label-cn">日期与时间</div>
             <div class="info-label-en">Date &amp; Time</div>
-            <div class="info-text cn">2026年10月3日（星期六）晚上七时正</div>
+            <div class="info-text cn">2026年10月3日（星期六）晚上七时</div>
             <div class="info-text">Saturday, 03 October 2026 at 7:00 PM</div>
           </div>
 
           <div class="info-box">
             <div class="info-label-cn">婚礼地点</div>
             <div class="info-label-en">Venue</div>
-            <div class="info-text cn">voco Orchard Singapore<br>三楼 Vista Room</div>
-            <div class="info-text">voco Orchard Singapore<br>Level 3, Vista Room</div>
+            <div class="info-text cn">Voco Orchard Singapore<br>三楼 Vista Room</div>
+            <div class="info-text">Voco Orchard Singapore<br>Level 3, Vista Room</div>
           </div>
 
           <div class="info-box address-center">
@@ -634,77 +778,74 @@
         <div class="rsvp-text card">
           <p class="cn">请填写以下资料，与我们分享您的出席信息。谢谢您见证我们的幸福时刻。</p>
           <p>Please fill in your details below to let us know if you will be joining us on our special day.</p>
-          
         </div>
 
-        <form 
-  class="card"
-  action="https://docs.google.com/forms/d/e/1FAIpQLSf3HF9uN6Hpb3Om6uFfoThcfNIp3zY-iZ9W0QGtAte9BAX9Fw/formResponse"
-  method="POST"
-  target="_blank"
->
+        <form
+          class="card"
+          action="https://docs.google.com/forms/d/e/1FAIpQLSf3HF9uN6Hpb3Om6uFfoThcfNIp3zY-iZ9W0QGtAte9BAX9Fw/formResponse"
+          method="POST"
+          target="_blank"
+        >
+          <div class="form-row">
+            <label>
+              <span class="label-cn">姓名</span>
+              Full Name
+            </label>
+            <input type="text" name="entry.326681200" required>
+          </div>
 
-  <div class="form-row">
-    <label>
-      <span class="label-cn">姓名</span>
-      Full Name
-    </label>
-    <input type="text" name="entry.326681200" required>
-  </div>
+          <div class="form-row">
+            <label>
+              <span class="label-cn">联络号码</span>
+              Contact Number
+            </label>
+            <input type="tel" name="entry.1828966850" required>
+          </div>
 
-  <div class="form-row">
-    <label>
-      <span class="label-cn">联络号码</span>
-      Contact Number
-    </label>
-    <input type="tel" name="entry.1828966850" required>
-  </div>
+          <div class="form-row">
+            <label>
+              <span class="label-cn">宾客归属</span>
+              Guest Side
+            </label>
+            <select name="entry.1924338191" required>
+              <option value="">Please choose / 请选择</option>
+              <option>Groom's Guest / 新郎宾客</option>
+              <option>Bride's Guest / 新娘宾客</option>
+            </select>
+          </div>
 
-  <div class="form-row">
-    <label>
-      <span class="label-cn">宾客归属</span>
-      Guest Side
-    </label>
-    <select name="entry.1924338191" required>
-      <option value="">Please choose / 请选择</option>
-      <option>Groom's Guest / 新郎宾客</option>
-      <option>Bride's Guest / 新娘宾客</option>
-    </select>
-  </div>
+          <div class="form-row">
+            <label>
+              <span class="label-cn">出席情况</span>
+              Attendance
+            </label>
+            <select name="entry.759747861" required>
+              <option value="">Please choose / 请选择</option>
+              <option>Joyfully attending / 很开心会出席</option>
+              <option>Sorry, unable to attend / 抱歉无法出席</option>
+            </select>
+          </div>
 
-  <div class="form-row">
-    <label>
-      <span class="label-cn">出席情况</span>
-      Attendance
-    </label>
-    <select name="entry.759747861" required>
-      <option value="">Please choose / 请选择</option>
-      <option>Joyfully attending / 很开心会出席</option>
-      <option>Sorry, unable to attend / 抱歉无法出席</option>
-    </select>
-  </div>
+          <div class="form-row">
+            <label>
+              <span class="label-cn">同行人数</span>
+              Number of Guests
+            </label>
+            <input type="number" name="entry.1924093467" min="1" max="10" value="1">
+          </div>
 
-  <div class="form-row">
-    <label>
-      <span class="label-cn">同行人数</span>
-      Number of Guests
-    </label>
-    <input type="number" name="entry.1924093467" min="1" max="10" value="1">
-  </div>
+          <div class="form-row">
+            <label>
+              <span class="label-cn">留言</span>
+              Message
+            </label>
+            <textarea name="entry.105307786"></textarea>
+          </div>
 
-  <div class="form-row">
-    <label>
-      <span class="label-cn">留言</span>
-      Message
-    </label>
-    <textarea name="entry.105307786"></textarea>
-  </div>
-
-  <button class="submit-btn" type="submit">
-    Submit RSVP / 提交回函
-  </button>
-
-</form>
+          <button class="submit-btn" type="submit">
+            Submit RSVP / 提交回函
+          </button>
+        </form>
       </div>
     </section>
   </main>
@@ -724,17 +865,36 @@
   <div id="yt-player" class="hidden-player"></div>
 
   <script>
-    function handleRSVP(event) {
-      event.preventDefault();
-      const form = event.target;
-      const data = new FormData(form);
-      const guestName = data.get('name') || 'Guest';
-      alert(`Thank you, ${guestName}!
+    const photoStrip = document.querySelector('.photo-strip');
 
-Your RSVP has been noted on this demo page.
-To receive actual submissions on GitHub Pages, connect this form to Formspree, Google Forms, or your own backend.`);
-      form.reset();
-    }
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    photoStrip.addEventListener('mousedown', (e) => {
+      isDown = true;
+      photoStrip.style.cursor = 'grabbing';
+      startX = e.pageX - photoStrip.offsetLeft;
+      scrollLeft = photoStrip.scrollLeft;
+    });
+
+    photoStrip.addEventListener('mouseleave', () => {
+      isDown = false;
+      photoStrip.style.cursor = 'grab';
+    });
+
+    photoStrip.addEventListener('mouseup', () => {
+      isDown = false;
+      photoStrip.style.cursor = 'grab';
+    });
+
+    photoStrip.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - photoStrip.offsetLeft;
+      const walk = (x - startX) * 1.2;
+      photoStrip.scrollLeft = scrollLeft - walk;
+    });
 
     let player;
     let isPlaying = false;
